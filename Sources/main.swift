@@ -83,9 +83,11 @@ struct Employee {
 
 class Table {
 
+    var pizzeria: Pizzeria
     var numberOfSeats: Int
 
-    init(numberOfSeats: Int) {
+    init(pizzeria: Pizzeria, numberOfSeats: Int) {
+        self.pizzeria = pizzeria
         self.numberOfSeats = numberOfSeats
     }
 
@@ -100,10 +102,14 @@ class Pizzeria {
 
     private var products: [Product]
     private var employees: [Employee]
+    private var tables: [Table]
     
     init(products: [Product], employees: [Employee]) {
         self.products = products
         self.employees = employees
+        tables = []
+        tables.append(Table(pizzeria: self, numberOfSeats: 3))
+        tables.append(Table(pizzeria: self, numberOfSeats: 5))           
     }
 
     func add(product: Product) {
@@ -136,7 +142,6 @@ extension Pizzeria: PizzeriaBehavior {
     }
 
 }
-
 
 var pizzeria = Pizzeria(products: [], employees: [])
 
@@ -178,11 +183,6 @@ pizzeria.employ(employee: Employee(
     salary: 50000,
     position: .cook
 ))
-
-var table1 = Table(numberOfSeats: 3)
-var table2 = Table(numberOfSeats: 5)
-
-
 
 pizzeria.open()
 
