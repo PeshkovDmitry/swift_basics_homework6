@@ -81,6 +81,20 @@ struct Employee {
 
 }
 
+class Table {
+
+    var numberOfSeats: Int
+
+    init(numberOfSeats: Int) {
+        self.numberOfSeats = numberOfSeats
+    }
+
+    func check(guests: Int) -> Bool {
+        numberOfSeats > guests
+    }
+
+}
+
 
 class Pizzeria {
 
@@ -164,6 +178,10 @@ pizzeria.employ(employee: Employee(
     salary: 50000,
     position: .cook
 ))
+
+var table1 = Table(numberOfSeats: 3)
+var table2 = Table(numberOfSeats: 5)
+
 
 
 pizzeria.open()
